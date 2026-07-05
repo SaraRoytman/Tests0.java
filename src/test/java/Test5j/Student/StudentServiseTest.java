@@ -10,15 +10,18 @@ class StudentServiseTest {
     @Test
     public void getStudentsTest(){
         StudentServise studentServise = new StudentServise();
-        Student student = new Student(1, "dan");
-        studentServise.addStudents(student);
-
-
         List<Student> listofstudents = studentServise.getStudents();
+        assertTrue(listofstudents.isEmpty());
 
 
+    }
+    @Test
+    public void getStudentTest2(){
+        StudentServise studentServise = new StudentServise();
+        Student student2 = new Student(5, "Noa");
+        studentServise.addStudents(student2);
+        List<Student> listofstudents = studentServise.getStudents();
         assertFalse(listofstudents.isEmpty());
-
 
     }
 
