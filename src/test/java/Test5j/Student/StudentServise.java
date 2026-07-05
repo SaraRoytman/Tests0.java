@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StudentServise {
+    public Object remove;
     private List<Student> students = new ArrayList<>();
 
     public List<Student> getStudents(){
@@ -16,4 +17,7 @@ public class StudentServise {
     }
 
 
+    public void remove(Student student3) {
+        students.remove(student3);
+    }
 }

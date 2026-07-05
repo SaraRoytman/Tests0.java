@@ -24,5 +24,14 @@ class StudentServiseTest {
         assertFalse(listofstudents.isEmpty());
 
     }
+    @Test
+    public void getStudentTest3(){
+        StudentServise studentServise = new StudentServise();
+        Student student3 = new Student(7, "Coral");
+        studentServise.remove(student3);
+        List<Student> listofstudents = studentServise.getStudents();
+        assertTrue(listofstudents.isEmpty());
+
+    }
 
 }
