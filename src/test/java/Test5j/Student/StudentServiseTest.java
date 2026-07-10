@@ -33,5 +33,14 @@ class StudentServiseTest {
         assertTrue(listofstudents.isEmpty());
 
     }
+    @Test
+    public void getstudentbyid(){
+        StudentServise studentServise = new StudentServise();
+        Student student4 = new Student(28, "Dana");
+        studentServise.addStudents(student4);
+        Student obj = studentServise.getstudentbyid(27);
+        assertNull(obj);
+
+    }
 
 }
