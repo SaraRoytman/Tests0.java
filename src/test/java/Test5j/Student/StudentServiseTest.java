@@ -40,6 +40,8 @@ class StudentServiseTest {
         studentServise.addStudents(student4);
         Student obj = studentServise.getstudentbyid(27);
         assertNull(obj);
+        Student obj1 = studentServise.getstudentbyid(28);
+        assertEquals(28, student4.getId());
 
     }
 
