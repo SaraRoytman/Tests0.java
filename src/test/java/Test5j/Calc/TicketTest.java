@@ -34,7 +34,7 @@ public class TicketTest {
             String pageText = driver.findElement(By.tagName("body")).getText();
 
             boolean haskeyword = pageText.contains("הופעה");
-            boolean haskeyword1 = pageText.contains("מופע");
+            boolean haskeyword1 = pageText.contains("₪");
             boolean hasyear2026 = pageText.contains("2026");
             boolean hasyear2027 = pageText.contains("2027");
 
