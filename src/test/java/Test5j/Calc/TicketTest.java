@@ -1,12 +1,10 @@
 package Test5j.Calc;
+
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import static org.junit.jupiter.api.Assertions.*;
-
-
-import org.junit.jupiter.api.BeforeEach;
 
 public class TicketTest {
     private WebDriver driver;
@@ -18,24 +16,44 @@ public class TicketTest {
 
     @Test
     @DisplayName("בדיקה")
-    public void testAvailability(){
-        driver.get("https://www.eventim.co.il/artist/harel-skaat/");
-        String pageText = driver.findElement(By.tagName("body")).getText();
+    public void testAvailability() throws InterruptedException { // הוספנו כאן התייחסות להשהיה
+        String[] websites = {
+                "https://www.eventim.co.il/artist/harel-skaat/",
+                "https://www.zappa-club.co.il/artist/harel-skaat/",
+                "https://kupat.co.il/artist/harel-skaat/",
+                "https://barby.co.il/show/5437"
+        };
+        boolean foundtickets = false;
 
-        boolean haskeyword = pageText.contains("הופעה");
-        boolean hasyear = pageText.contains("2027");
+        for(String url: websites){
+            driver.get(url);
 
-        assertTrue(haskeyword || hasyear);
+            // עוצרים את הסקריפט ל-3 שניות כדי לתת לאתרים כמו הבארבי לטעון את התוכן הדינמי
+            Thread.sleep(3000);
 
-        System.out.println("יש משהווו");
+            String pageText = driver.findElement(By.tagName("body")).getText();
 
+            boolean haskeyword = pageText.contains("הופעה");
+            boolean haskeyword1 = pageText.contains("מופע");
+            boolean hasyear2026 = pageText.contains("2026");
+            boolean hasyear2027 = pageText.contains("2027");
 
+            if(haskeyword || haskeyword1 || hasyear2027 || hasyear2026){
+                foundtickets = true;
+                System.out.println("found in: " + url); // הוספנו רווח ונקודתיים לקריאות
+            }
+            else{
+                System.out.println("didn't find in: " + url); // הוספנו רווח ונקודתיים לקריאות
+            }
+        }
+
+        assertTrue(foundtickets, "no tickets!");
     }
+
     @AfterEach
     public void tearDown() {
         if(driver != null){
             driver.quit();
         }
     }
-
 }
