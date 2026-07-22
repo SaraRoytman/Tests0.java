@@ -15,10 +15,10 @@ public class TicketTest {
     }
 
     @Test
-    @DisplayName("בדיקה")
+    @DisplayName("בדיקת זמינות כרטיסים")
     public void testAvailability() throws InterruptedException {
         String[] websites = {
-                "https://www.eventim.co.il/artist/%D7%94%D7%A8%D7%90%D7%9C-%D7%A1%D7%A7%D7%A2%D7%AA/",
+                "https://www.eventim.co.il/artist/%D7%94%D7%A8%D7%90%D7%9C-%D7%A1%D7%A7%D7%A2%D7%_%D7%AA/",
                 "https://www.zappa-club.co.il/artist/%D7%94%D7%A8%D7%90%D7%9C-%D7%A1%D7%A7%D7%A2%D7%AA/?affiliate=ZPE",
                 "https://kupat.co.il/artist/harel-skaat/",
                 "https://barby.co.il/show/5437"
@@ -28,22 +28,22 @@ public class TicketTest {
         for(String url: websites){
             driver.get(url);
 
-            // עוצרים את הסקריפט ל-3 שניות כדי לתת לאתרים כמו הבארבי לטעון את התוכן הדינמי
             Thread.sleep(3000);
 
-            String pageText = driver.findElement(By.tagName("body")).getText();
+            String pageSource = driver.getPageSource();
 
-            boolean haskeyword = pageText.contains("הופעה");
-            boolean haskeyword1 = pageText.contains("₪");
-            boolean hasyear2026 = pageText.contains("2026");
-            boolean hasyear2027 = pageText.contains("2027");
+            boolean hasArtist = pageSource.contains("הראל סקעת");
+            boolean haskeyword = pageSource.contains("הופעה");
+            boolean hasPrice = pageSource.contains("₪");
+            boolean hasyear2026 = pageSource.contains("2026");
+            boolean hasyear2027 = pageSource.contains("2027");
 
-            if(haskeyword || haskeyword1 || hasyear2027 || hasyear2026){
+            if(hasArtist && hasPrice && (haskeyword || hasyear2026 || hasyear2027)){
                 foundtickets = true;
-                System.out.println("found in: " + url); // הוספנו רווח ונקודתיים לקריאות
+                System.out.println("found in: " + url);
             }
             else{
-                System.out.println("didn't find in: " + url); // הוספנו רווח ונקודתיים לקריאות
+                System.out.println("didn't find in: " + url);
             }
         }
 
