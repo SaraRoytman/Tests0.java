@@ -16,10 +16,10 @@ public class TicketTest {
 
     @Test
     @DisplayName("בדיקה")
-    public void testAvailability() throws InterruptedException { // הוספנו כאן התייחסות להשהיה
+    public void testAvailability() throws InterruptedException {
         String[] websites = {
-                "https://www.eventim.co.il/artist/harel-skaat/",
-                "https://www.zappa-club.co.il/artist/harel-skaat/",
+                "https://www.eventim.co.il/artist/%D7%94%D7%A8%D7%90%D7%9C-%D7%A1%D7%A7%D7%A2%D7%AA/",
+                "https://www.zappa-club.co.il/artist/%D7%94%D7%A8%D7%90%D7%9C-%D7%A1%D7%A7%D7%A2%D7%AA/?affiliate=ZPE",
                 "https://kupat.co.il/artist/harel-skaat/",
                 "https://barby.co.il/show/5437"
         };
